@@ -11,6 +11,9 @@ This works for bots as well, probably
 
 # Configs
 You can look at the [sample file here](configs/leayal/gamemodes/gungame.json).
+### Note: The config file is just a sample. Please **do not** copypasta. Also, "freezing" a cvars **should not be used unless you have no choice**.
 
 # Preview
 [You can watch the preview video here](https://www.youtube.com/watch?v=AXF4p3I0eiA&t=664).
+
+## P/s: Special thanks to AlliedModder community (for info). And Bailopan and reCSDM authors for CSDM's spawn locations and code to parse and use them.
