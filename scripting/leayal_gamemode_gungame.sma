@@ -86,6 +86,28 @@ enum dataFreezeCVarValue
     frozencvar_value[65]
 }
 
+enum
+{    
+    GR_NONE = 0,
+    
+    GR_WEAPON_RESPAWN_YES,
+    GR_WEAPON_RESPAWN_NO,
+    
+    GR_AMMO_RESPAWN_YES,
+    GR_AMMO_RESPAWN_NO,
+    
+    GR_ITEM_RESPAWN_YES,
+    GR_ITEM_RESPAWN_NO,
+
+    GR_PLR_DROP_GUN_ALL,
+    GR_PLR_DROP_GUN_ACTIVE,
+    GR_PLR_DROP_GUN_NO,
+
+    GR_PLR_DROP_AMMO_ALL,
+    GR_PLR_DROP_AMMO_ACTIVE,
+    GR_PLR_DROP_AMMO_NO,
+}; 
+
 enum coordinate { Float:X, Float:Y, Float:Z }
 
 new hudColors[3];
@@ -208,6 +230,10 @@ public plugin_init()
     ArrayPushCell(HookChains, RegisterHookChain(RG_CSGameRules_RestartRound, "OnNewRound", false));
     ArrayPushCell(HookChains, RegisterHookChain(RG_CBasePlayer_HasRestrictItem, "HookChain_OnHasRestrictItem", false));
     ArrayPushCell(HookChains, RegisterHookChain(RG_CBasePlayer_OnSpawnEquip, "HookChain_EquippingSpawnPlayer", false));
+    ArrayPushCell(HookChains, RegisterHookChain(RG_CSGameRules_FlPlayerFallDamage, "OnPlayerCanTakeDmg", false));
+    ArrayPushCell(HookChains, RegisterHookChain(RG_CSGameRules_FPlayerCanTakeDamage, "OnPlayerCanTakeDmg", false));
+    ArrayPushCell(HookChains, RegisterHookChain(RG_CSGameRules_DeadPlayerWeapons, "OnDeadPlayerDropItems", false));
+    // ArrayPushCell(HookChains, RegisterHookChain(RG_CSGameRules_FShouldSwitchWeapon, "", false));
     // ArrayPushCell(HookChains, RegisterHookChain(RG_CBasePlayer_GiveDefaultItems, "HookChain_PlayerGiveDefaultItems", false));
     // RG_CSGameRules_DeadPlayerWeapons RG_CSGameRules_RestartRound
 
@@ -219,7 +245,7 @@ public plugin_init()
 
     fwh_gg_levelup = CreateMultiForward(FW_OnLevelUp, ET_IGNORE, FP_CELL, FP_CELL, FP_CELL);
     fwh_gg_cfgloaded = CreateMultiForward(FW_OnConfigLoaded, ET_IGNORE);
-    fwh_gg_matchend = CreateMultiForward(FW_OnMatchEnded, ET_IGNORE);
+    fwh_gg_matchend = CreateMultiForward(FW_OnMatchEnded, ET_IGNORE, FP_CELL);
 
     if (IsHamValid(Ham_CS_Item_CanDrop))
     {
@@ -1105,12 +1131,19 @@ public OnGetPlayerSpawnSpot(const pPlayer)
 	return HC_CONTINUE;
 }
 
-public OnPlayerCanTakeDmg(const pPlayer, const pAttacker)
+public OnDeadPlayerDropItems(const this)
 {
-	if (pPlayer == pAttacker || !IsPlayer(pAttacker))
+    // "this" here is the dead player
+    SetHookChainReturn(ATYPE_INTEGER, GR_PLR_DROP_GUN_NO);
+    return HC_SUPERCEDE;
+}
+
+public OnPlayerCanTakeDmg(const this, const pAttacker)
+{
+	if (this == pAttacker || !IsPlayer(pAttacker))
 		return HC_CONTINUE;
 
-	if (f_isProtected[pPlayer]) // protected attacker can't take damage
+	if (f_isProtected[this]) // protected attacker can't take damage
 	{
 		SetHookChainReturn(ATYPE_INTEGER, 0);
 		return HC_SUPERCEDE;
@@ -1192,7 +1225,7 @@ OnGameEnded(winnerId = 0)
 
     f_gameState = state_ended;
     new ret = 1;
-    if (ExecuteForward(fwh_gg_matchend, ret) == 0)
+    if (ExecuteForward(fwh_gg_matchend, ret, winnerId) == 0)
     {
         ret = 1;
     }
