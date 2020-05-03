@@ -1,6 +1,6 @@
 # AmxModx-GameMode-Gungame
 An attempt to re-implementation Gungame game mode for ReHLDS (using ReAPI and ReGameDll_CS) without database and stats.
-This works for boss as well.
+This works for bots as well, probably
 
 # Plugin Build Requirements:
  * [Amx Modx v1.10](https://www.amxmodx.org/downloads-new.php?branch=master)
