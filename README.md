@@ -1,2 +1,16 @@
 # AmxModx-GameMode-Gungame
-Attempt to re-implementation Gungame game mode (ReHLDS and ReGameDll_CS and ReAPI) 
+An attempt to re-implementation Gungame game mode for ReHLDS (using ReAPI and ReGameDll_CS) without database and stats.
+This works for boss as well.
+
+# Plugin Build Requirements:
+ * [Amx Modx v1.10](https://www.amxmodx.org/downloads-new.php?branch=master)
+ * [ReHLDS](https://github.com/s1lentq/rehlds)
+ * [ReGameDll_CS](https://github.com/s1lentq/ReGameDLL_CS)
+ * [ReAPI](https://github.com/s1lentq/reapi)
+ * [My include files](scripting/include/leayal_task_const.inc)
+
+# Configs
+You can look at the [sample file here](configs/leayal/gamemodes/gungame.json).
+
+# Preview
+[You can watch the preview video here](https://www.youtube.com/watch?v=AXF4p3I0eiA&t=664).
