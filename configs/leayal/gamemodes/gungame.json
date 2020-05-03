@@ -1,0 +1,59 @@
+{
+	"cvars": {
+		"mp_forcerespawn": 3,
+		"mp_freeforall": 1,
+		"mp_autoteambalance": {
+			"value": 0,
+			"freeze": true
+		},
+		"mp_scoreboard_showhealth": 5,
+		"mp_item_staytime": {
+			"value": 1,
+			"freeze": true
+		},
+		"leayal_gamemode_gungame_hud_r": 200,
+		"leayal_gamemode_gungame_hud_g": 130,
+		"leayal_gamemode_gungame_hud_b": 0,
+		"leayal_gamemode_gungame_hud_refresh": 1.0,
+		"leayal_gamemode_gungame_default_armor": 100,
+		"leayal_gamemode_gungame_nade_refill_time": 2.0,
+		"pb_maxweaponpickup": {
+			"value": 0,
+			"freeze": true
+		},
+		"pb_ffa": {
+			"value": 1,
+			"freeze": true
+		},
+		"pb_restrweapons": "10000000000000000000000001"
+	},
+	"commands": [
+		"semiclip_option semiclip 0"
+	],
+	"weapons": {
+		"weapon_glock18": 1,
+		"weapon_usp": 1,
+		"weapon_fiveseven": 1,
+		"weapon_deagle": 1,
+		"weapon_elite": 1,
+		"weapon_m3": 2,
+		"weapon_xm1014": 2,
+		"weapon_tmp": 2,
+		"weapon_mac10": 2,
+		"weapon_ump45": 2,
+		"weapon_mp5navy": 2,
+		"weapon_p90": 2,
+		"weapon_galil": 3,
+		"weapon_famas": 2,
+		"weapon_ak47": 2,
+		"weapon_scout": 1,
+		"weapon_m4a1": 2,
+		"weapon_sg552": 3,
+		"weapon_aug": 3,
+		"weapon_awp": 4,
+		"weapon_g3sg1": 4,
+		"weapon_sg550": 4,
+		"weapon_m249": 4,
+		"weapon_hegrenade": 2
+	}
+}
